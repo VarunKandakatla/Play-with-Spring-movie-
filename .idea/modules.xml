@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Checking Annotations.iml" filepath="$PROJECT_DIR$/.idea/Checking Annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Checking-Annotations/Checking-Annotations.iml" filepath="$PROJECT_DIR$/Checking-Annotations/Checking-Annotations.iml" />
+    </modules>
+  </component>
+</project>

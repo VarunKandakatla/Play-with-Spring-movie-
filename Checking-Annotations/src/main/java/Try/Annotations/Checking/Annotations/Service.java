@@ -1,40 +1,45 @@
 package Try.Annotations.Checking.Annotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import java.util.Set;
+
 @org.springframework.stereotype.Service
 public class Service {
     @Autowired
     Repository repo;
     //adding movie
-    public String addMovie(String name){
+    public ResponseEntity addMovie(String name){
 
         if(repo.db.contains(name)){
-            return "Already in List "+name;
+            return new ResponseEntity<>("Already in List "+name, HttpStatus.ALREADY_REPORTED);
         }
 
         repo.db.add(name);
-        return "Successfully Added "+name;
+        return new ResponseEntity<>("Successfully Added "+name,HttpStatus.ACCEPTED);
     }
 
     //get movie
-    public String getMovie(String name){
+    public ResponseEntity getMovie(String name){
         if(repo.db.contains(name)){
-            return "Here is your movie: "+name;
+            return new ResponseEntity<>("Here is your movie: "+name,HttpStatus.ALREADY_REPORTED);
         }
 
-        return "Sorry! Not Found!"+name;
+        return new ResponseEntity<>("Sorry! Not Found!"+name,HttpStatus.NO_CONTENT);
     }
 
     //update
-    public String updateMovie(String name,String newName){
+    public ResponseEntity updateMovie(String name,String newName){
         if(repo.db.contains(name)){
             repo.db.remove(name);
             repo.db.add(newName);
 
-            return "Successfully Updated! "+newName;
+            return new ResponseEntity<>("Successfully Updated! "+newName,HttpStatus.ACCEPTED);
         }
 
-        return "Entered name not found to update! Try again";
+        return new ResponseEntity<>("Entered name not found to update! Try again",HttpStatus.BAD_REQUEST);
     }
 
     public String deleteMovie(String name){
@@ -52,5 +57,9 @@ public class Service {
         }
         repo.db.clear();
         return "Successfully Cleared All";
+    }
+
+    public Set getList(){
+        return repo.db;
     }
 }
